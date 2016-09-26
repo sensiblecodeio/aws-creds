@@ -160,7 +160,7 @@ func loadCache() (*sts.Credentials, bool, error) {
 	default:
 		return nil, false, err
 	case os.IsNotExist(err):
-		return nil, false, err
+		return nil, false, nil
 	case err == nil:
 		// OK
 	}
