@@ -36,13 +36,16 @@ func main() {
 	// currently cached, since the credentials don't last very long by
 	// default.
 	arn := os.Getenv("AWS_ASSUME_ROLE")
-	roleSessionName := os.Getenv("AWS_ASSUME_ROLE_SESSION_NAME")
-	sess := sessionWithCredentials(baseSession, creds)
-	creds, err = assumeRole(sess, arn, roleSessionName)
-	if err != nil {
-		log.Fatal(err)
+
+	if arn != "" {
+		roleSessionName := os.Getenv("AWS_ASSUME_ROLE_SESSION_NAME")
+		sess := sessionWithCredentials(baseSession, creds)
+		creds, err = assumeRole(sess, arn, roleSessionName)
+		if err != nil {
+			log.Fatal(err)
+		}
+		log.Printf("Role creds expire in %v", until(*creds.Expiration))
 	}
-	log.Printf("Role creds expire in %v", until(*creds.Expiration))
 
 	args := os.Args[1:]
 	if len(args) == 0 {
