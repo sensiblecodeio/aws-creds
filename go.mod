@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	camlistore.org v0.0.0-20171230002226-a5a65f0d8b22
-	github.com/aws/aws-sdk-go v1.39.4
+	github.com/aws/aws-sdk-go v1.43.45
 )
 
 require github.com/jmespath/go-jmespath v0.4.0 // indirect
